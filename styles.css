@@ -1,0 +1,137 @@
+/* General Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: Arial, sans-serif;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  position: relative;
+}
+
+/* Flashing background */
+#flash {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #ff0000;
+  animation: flash 1s infinite;
+  z-index: -1;
+}
+
+@keyframes flash {
+  0% { background-color: #ff0000; }
+  25% { background-color: #00ff00; }
+  50% { background-color: #0000ff; }
+  75% { background-color: #ffff00; }
+  100% { background-color: #ff00ff; }
+}
+
+/* Balls around the border */
+#balls-container {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  border: 2px solid transparent;
+  top: 0;
+  left: 0;
+  pointer-events: none;
+}
+
+.ball {
+  position: absolute;
+  width: 15px;
+  height: 15px;
+  border-radius: 50%;
+  background-color: #fff;
+  animation: shake 0.5s infinite, strobe 0.2s infinite alternate;
+}
+
+@keyframes shake {
+  0% { transform: translate(0, 0); }
+  25% { transform: translate(-3px, 0); }
+  50% { transform: translate(3px, 0); }
+  75% { transform: translate(0, 3px); }
+  100% { transform: translate(0, -3px); }
+}
+
+@keyframes strobe {
+  0% { background-color: #ff0000; }
+  25% { background-color: #00ff00; }
+  50% { background-color: #0000ff; }
+  75% { background-color: #ffff00; }
+  100% { background-color: #ff00ff; }
+}
+
+/* Button Container */
+.buttons-container {
+  display: flex;
+  gap: 20px;
+  z-index: 1;
+}
+
+/* Button Style */
+.button {
+  padding: 20px 40px;
+  font-size: 18px;
+  font-weight: bold;
+  color: white;
+  background-color: #333;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+/* Button Hover Effect (Continuous Spin - Much Faster) */
+.button:hover {
+  animation: spin 0.3s linear infinite; /* Much faster spin */
+}
+
+/* Spin Animation */
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+/* Back Button Container */
+.back-button-container {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+}
+
+/* Back Button Style */
+#backButton {
+  padding: 15px 30px;
+  font-size: 16px;
+  background-color: #333;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#backButton:hover {
+  background-color: #555;
+}
+
+/* Explosion Animation (Larger & Faster for Homepage Buttons) */
+@keyframes explode {
+  0% {
+      transform: scale(1);
+      opacity: 1;
+  }
+  100% {
+      transform: scale(10); /* Larger explosion */
+      opacity: 0;
+  }
+}
